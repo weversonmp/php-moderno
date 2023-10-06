@@ -11,7 +11,7 @@
 <body>
 
     <main>
-        <h1>Conversor de Moedas v1.0</h1>
+        <h1>Conversor de Moedas 2.0</h1>
 
         <?php
         require_once "cotacaoApi.php";
