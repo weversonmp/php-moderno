@@ -8,44 +8,29 @@
 </head>
 <body>
     <?php 
-    $dividendo = $_GET['d1'] ?? 0;
-    $divisor = $_GET['d2'] ?? 1;
+    $minimo = 1_380.60;
+    $salario = $_GET['sal'] ?? 1380.6;
     ?>
 
     <main>
-        <h1>Anatomia de uma Divisão</h1>
-        <form action="" method="get">
-            <label for="d1">Dividendo</label>
-            <input type="number" name="d1" id="d1" min="0" value="<?=$dividendo?>">
-            <label for="d2">Divisor</label>
-            <input type="number" name="d2" id="d2" min="1" value="<?=$divisor?>">
-            <input type="submit" value="Analisar">
+        <h1>Informe seu salário</h1>
+        <form action="<?=$_SERVER["PHP_SELF"]?>" method="get">
+            <label for="sal">Salário</label>
+            <input type="number" name="sal" id="sal" value="<?=$salario?>" step="0.01">
+            <p>Considerando o salário mínimo de <strong><?= "R$". number_format($minimo, 2, ",", ".");?></strong></p><br/>
+            <input type="submit" value="Calcular">
         </form>
     </main>
     <section>
-        <h2>Estrutura da Divisão</h2>
+        <h2>Resultado Final</h2>
         <?php 
-        $quociente = intdiv($dividendo, $divisor);
-        $resto = $dividendo % $divisor;
-        
-            echo "<ul>";
-            echo "<li>Dividendo: $dividendo</li>";
-            echo "<li>Divisor: $divisor</li>";
-            echo "<li>Quociente: $quociente</li>";
-            echo "<li>Resto: $resto</li>";
-            echo "</ul>";
-        ?>
+        $tot =intdiv($salario, $minimo);
+        $dif = $salario % $minimo;
 
-        <table class="divisao">
-            <tr>
-                <td><?=$dividendo?></td>
-                <td><?=$divisor?></td>
-            </tr>
-            <tr>
-                <td><?=$quociente?></td>
-                <td><?=$resto?></td>
-            </tr>
-        </table>
+        echo "<p>Quem ganha um salário de <strong>R\$". number_format($salario, 2, ",", ".") ."</strong> Ganha $tot salários mínimos + <strong>R$". number_format($dif, 2, ",", ".") ."</strong></p>"
+        ?>
     </section>
+    
+
 </body>
 </html>
